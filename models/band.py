@@ -18,5 +18,21 @@ class Band:
         CURSOR.execute(sql, (name, hometown))
         CONN.commit()
         return cls(name, hometown, CURSOR.lastrowid)
+    
+    @classmethod
+    def find_by_id(cls, id):
+        """Find a band by its ID."""
+        sql = "SELECT * FROM bands WHERE id = ?"
+        row = CURSOR.execute(sql, (id,)).fetchone()
+        return cls(row[1], row[2], row[0]) if row else None
+
+    def concerts(self):
+        """Return all concerts for this band."""
+        sql = """
+            SELECT * FROM concerts WHERE band_id = ?
+        """
+        concerts = CURSOR.execute(sql, (self.id,)).fetchall()
+        return concerts
+
 
         
