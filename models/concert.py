@@ -1,5 +1,6 @@
-
-
+from __init__ import CONN, CURSOR
+from band import Band
+from venue import Venue
 
 
 class Concert:
