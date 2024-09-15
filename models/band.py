@@ -1,3 +1,5 @@
+from __init__ import CONN, CURSOR
+
 class Band:
     def __init__(self,name,hometown,id=None):
         self.id = id
